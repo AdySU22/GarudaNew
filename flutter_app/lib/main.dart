@@ -1,7 +1,7 @@
 // lib/main.dart
 
 import 'package:flutter/material.dart';
-import 'views/opening_page.dart';
+import 'package:flutter_app/core/app_export.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: OpeningPage(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: AppRoutes.initialRoute,
+      routes: AppRoutes.routes
     );
   }
 }
