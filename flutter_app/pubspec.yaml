@@ -88,6 +88,7 @@ flutter:
      - assets/dummies/home_pick_sport/
      - assets/dummies/home_special_offers/
      - assets/dummies/home_for_you/
+     - assets/dummies/home_near_you/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
