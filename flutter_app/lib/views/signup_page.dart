@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/core/app_export.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class _SignupPageState extends State<SignupPage> {
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.white,
-                    Colors.green,
+                    Color.fromARGB(70, 176, 255, 148),
                     Colors.white,
                   ],
                 ),
@@ -45,15 +46,11 @@ class _SignupPageState extends State<SignupPage> {
                 child: Container(
                   width: 323,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    gradient: LinearGradient(
-                      colors: [Colors.white, Colors.green, Colors.white],
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color.fromARGB(153, 255, 255, 255)),
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding:
+                        const EdgeInsets.only(top: 24, left: 24, right: 24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
@@ -65,14 +62,15 @@ class _SignupPageState extends State<SignupPage> {
                               Text(
                                 "Sign Up",
                                 style: TextStyle(
-                                  fontSize: 24,
+                                  fontSize: 32,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               SizedBox(height: 10),
                               Text(
                                 "Create an account to continue!",
-                                style: TextStyle(fontSize: 16),
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
                               ),
                             ],
                           ),
@@ -81,13 +79,19 @@ class _SignupPageState extends State<SignupPage> {
                           key: _formKey,
                           child: Column(
                             children: [
+                              SizedBox(
+                                height: 24,
+                              ),
                               TextFormField(
                                 decoration: InputDecoration(
-                                  labelText: 'First Name',
+                                  labelText: 'First Name*',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.w500),
+                                  isDense: true,
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(10.0),
                                     borderSide: BorderSide.none,
                                   ),
                                 ),
@@ -98,14 +102,17 @@ class _SignupPageState extends State<SignupPage> {
                                   return null;
                                 },
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 12),
                               TextFormField(
                                 decoration: InputDecoration(
-                                  labelText: 'Last Name',
+                                  labelText: 'Last Name*',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.w500),
+                                  isDense: true,
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(10.0),
                                     borderSide: BorderSide.none,
                                   ),
                                 ),
@@ -116,14 +123,17 @@ class _SignupPageState extends State<SignupPage> {
                                   return null;
                                 },
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 12),
                               TextFormField(
                                 decoration: InputDecoration(
-                                  labelText: 'Email',
+                                  labelText: 'Email*',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.w500),
+                                  isDense: true,
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(10.0),
                                     borderSide: BorderSide.none,
                                   ),
                                 ),
@@ -139,14 +149,17 @@ class _SignupPageState extends State<SignupPage> {
                                   return null;
                                 },
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 12),
                               TextFormField(
                                 decoration: InputDecoration(
                                   labelText: 'Phone Number',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.w500),
+                                  isDense: true,
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(10.0),
                                     borderSide: BorderSide.none,
                                   ),
                                 ),
@@ -161,15 +174,18 @@ class _SignupPageState extends State<SignupPage> {
                                   return null;
                                 },
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 12),
                               TextFormField(
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
-                                  labelText: 'Password',
+                                  labelText: 'Password*',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.w500),
+                                  isDense: true,
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(10.0),
                                     borderSide: BorderSide.none,
                                   ),
                                   suffixIcon: IconButton(
@@ -195,9 +211,9 @@ class _SignupPageState extends State<SignupPage> {
                               TextButton(
                                 style: TextButton.styleFrom(
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  backgroundColor: Colors.blue,
+                                  backgroundColor: Color(0xff1B6100),
                                   minimumSize: Size(
                                       MediaQuery.of(context).size.width, 48),
                                 ),
@@ -218,11 +234,16 @@ class _SignupPageState extends State<SignupPage> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Already have an account? "),
+                                  Text(
+                                    "Already have an account? ",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
                                   TextButton(
-                                      onPressed: () {}, child: Text("Login"))
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, AppRoutes.loginPage);
+                                      }, child: Text("Login"))
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),

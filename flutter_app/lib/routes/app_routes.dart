@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/views/login_page.dart';
 import 'package:flutter_app/views/opening_page.dart';
 import 'package:flutter_app/views/signup_page.dart';
 import 'package:flutter_app/views/welcoming_page.dart';
@@ -15,6 +16,6 @@ class AppRoutes {
     openingPage : (context)=> OpeningPage(),
     welcomingPage : (context)=> WelcomingPage(),
     signupPage : (context)=> SignupPage(),
-    // loginPage : (context)=> LoginPage(),
+    loginPage : (context)=> LoginPage(),
   };
 }
