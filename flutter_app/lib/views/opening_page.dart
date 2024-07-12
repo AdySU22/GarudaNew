@@ -6,7 +6,14 @@ class OpeningPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Container(
+        decoration: BoxDecoration(gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0XFFA7FF87),
+            Color(0XFFFFFFFF)
+          ])),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -20,7 +27,7 @@ class OpeningPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Image.asset(
-              'assets/city_image.png', // Ensure you have this image in your assets folder
+              'assets/images/opening_logo.png', // Ensure you have this image in your assets folder
               width: 200,
               height: 200,
             ),
