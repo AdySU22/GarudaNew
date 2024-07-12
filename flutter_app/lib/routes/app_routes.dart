@@ -4,6 +4,7 @@ import 'package:flutter_app/views/home_page.dart';
 import 'package:flutter_app/views/login_page.dart';
 import 'package:flutter_app/views/opening_page.dart';
 import 'package:flutter_app/views/signup_page.dart';
+import 'package:flutter_app/views/venue_finder_page.dart';
 import 'package:flutter_app/views/welcoming_page.dart';
 
 class AppRoutes {
@@ -13,6 +14,16 @@ class AppRoutes {
   static const String signupPage = '/signup_page';
   static const String loginPage = '/login_page';
   static const String homePage = '/home_page';
+  static const String venueFinderPage = '/venue_finder_page';
+  static const String searchPage = '/search_page';
+  static const String confirmationPage = '/confirmation_page';
+  static const String purchasePage = '/purchase_page';
+  static const String paymentStatusPage = '/payment_status_page';
+  static const String purchaseHistoryPage = '/purchase_history_page';
+  static const String settingPage = '/setting_page';
+  static const String profilePage = '/profile_page';
+  static const String propertyRegisterPage = '/property_register_page';
+
 
   static Map<String, WidgetBuilder> routes = {
     initialRoute: (context) => OpeningPage(),
@@ -20,6 +31,7 @@ class AppRoutes {
     welcomingPage: (context) => WelcomingPage(),
     signupPage: (context) => SignupPage(),
     loginPage: (context) => LoginPage(),
+    venueFinderPage: (context) => VenueFinderPage()
   };
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {

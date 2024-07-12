@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/controller/login_controller.dart';
 import 'package:flutter_app/core/app_export.dart';
+import 'package:flutter_app/widgets/AppButton.dart';
+import 'package:flutter_app/widgets/AppTextField.dart'; // Import the AppTextField class
 
 class LoginPage extends StatefulWidget {
   @override
@@ -73,10 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                       Container(
                         child: Column(
                           children: [
-                            const Text(
-                              "Login",
-                              style: AppTextStyles.interBlackBold32
-                            ),
+                            const Text("Login",
+                                style: AppTextStyles.interBlackBold32),
                             SizedBox(height: 10),
                             Text(
                               "Enter your email and password to log in",
@@ -90,51 +90,25 @@ class _LoginPageState extends State<LoginPage> {
                         child: Column(
                           children: [
                             SizedBox(height: 24),
-                            TextFormField(
+                            AppTextField(
                               controller: _loginController.emailController,
-                              decoration: InputDecoration(
-                                labelText: 'Email*',
-                                labelStyle: AppTextStyles.interBlackMedium14,
-                                isDense: true,
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
+                              labelText: 'Email*',
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your email';
                                 }
                                 // Basic email validation
-                                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                    .hasMatch(value)) {
                                   return 'Please enter a valid email';
                                 }
                                 return null;
                               },
                             ),
                             SizedBox(height: 12),
-                            TextFormField(
+                            AppTextField(
                               controller: _loginController.passwordController,
-                              obscureText: _obscureText,
-                              decoration: InputDecoration(
-                                labelText: 'Password*',
-                                labelStyle: AppTextStyles.interBlackMedium14,
-                                isDense: true,
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none,
-                                ),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _obscureText ? Icons.visibility : Icons.visibility_off,
-                                  ),
-                                  onPressed: _togglePasswordVisibility,
-                                ),
-                              ),
+                              labelText: 'Password*',
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your password';
@@ -144,6 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                                 }
                                 return null;
                               },
+                              isPassword: true,
                             ),
                             SizedBox(height: 16),
                             Row(
@@ -159,10 +134,8 @@ class _LoginPageState extends State<LoginPage> {
                                         });
                                       },
                                     ),
-                                    Text(
-                                      "Remember me",
-                                      style: AppTextStyles.interGreyNormal12
-                                    ),
+                                    Text("Remember me",
+                                        style: AppTextStyles.interGreyNormal12),
                                   ],
                                 ),
                                 GestureDetector(
@@ -175,51 +148,36 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                             ),
                             SizedBox(height: 20),
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                backgroundColor: AppColors.darkGreen,
-                                minimumSize: Size(MediaQuery.of(context).size.width, 48),
-                              ),
-                              onPressed: () async {
-                                try {
-                                  await _loginController.login(context);
-                                  // Navigate to the next screen on successful login
-                                } catch (error) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text(error.toString())),
-                                  );
-                                }
-                              },
-                              child: _loginController.isLoading
-                                  ? CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                    )
-                                  : Text(
-                                      "Log In",
-                                      style: AppTextStyles.interWhiteNormal14,
-                                    ),
+                            AppButton(
+                              isLoading: _loginController.isLoading,
+                              onProcess: _loginController.login,
+                              backgroundColor:
+                                  AppColors.darkGreen, // Use your custom color
+                              textStyle: AppTextStyles
+                                  .interWhiteNormal14, // Use your custom text style
+                              buttonText: "Log In", // Customize button text
                             ),
                             Padding(
                               padding: EdgeInsets.all(24),
                               child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Don't have an account? ",
-                                  style: AppTextStyles.interGreyNormal12,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, AppRoutes.signupPage);
-                                  },
-                                  child: Text("Sign Up", style: AppTextStyles.interBlueMedium12),
-                                ),
-                              ],
-                            ),
-                        )],
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Don't have an account? ",
+                                    style: AppTextStyles.interGreyNormal12,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, AppRoutes.signupPage);
+                                    },
+                                    child: Text("Sign Up",
+                                        style: AppTextStyles.interBlueMedium12),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
