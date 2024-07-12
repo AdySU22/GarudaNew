@@ -9,3 +9,11 @@ services:
     network_mode: host
     command: sleep infinity
 
+  devcontainer-mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d

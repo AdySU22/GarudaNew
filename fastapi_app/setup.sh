@@ -16,3 +16,12 @@ echo "alias v='uv pip install -p \$(which python)'" >> /root/.bashrc
 
 # Apply bashrc
 source /root/.bashrc
+
+# Install python packages
+v -r requirements.txt
+
+# Import database
+# Replace 'database.sql' with the actual path to your database file
+mysql -u root -p password umn < umn.sql
+
+

@@ -5,7 +5,7 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
     "dockerComposeFile": "docker-compose.yaml",
 	"service": "devcontainer",
-    "workspaceFolder": "/workspace"
+    "workspaceFolder": "/workspaces",
     // "build": { 
 	// 	"dockerfile": "Dockerfile"
 	// },
@@ -23,7 +23,7 @@
 	// "forwardPorts": [6080, 5901],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "bash setup.sh"
+	"postCreateCommand": "bash setup.sh"
 
 	// Configure tool-specific properties.
 	// "portsAttributes": {
