@@ -29,6 +29,38 @@ class _SignupPageState extends State<SignupPage> {
     });
   }
 
+  Widget buildTextFormField({
+    required TextEditingController controller,
+    required String labelText,
+    required String? Function(String?)? validator,
+    bool isPassword = false,
+  }) {
+    return TextFormField(
+      controller: controller,
+      obscureText: isPassword && _obscureText,
+      decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: TextStyle(fontWeight: FontWeight.w500),
+        isDense: true,
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide.none,
+        ),
+        suffixIcon: isPassword
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                ),
+                onPressed: _togglePasswordVisibility,
+              )
+            : null,
+      ),
+      validator: validator,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -69,45 +101,33 @@ class _SignupPageState extends State<SignupPage> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        child: Column(
-                          children: [
-                            Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      Column(
+                        children: [
+                          Text(
+                            "Sign Up",
+                            style: TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
                             ),
-                            SizedBox(height: 10),
-                            Text(
-                              "Create an account to continue!",
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey,
-                              ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            "Create an account to continue!",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Form(
                         key: _signupController.formKey,
                         child: Column(
                           children: [
                             SizedBox(height: 24),
-                            TextFormField(
+                            buildTextFormField(
                               controller: _signupController.firstNameController,
-                              decoration: InputDecoration(
-                                labelText: 'First Name*',
-                                labelStyle: TextStyle(fontWeight: FontWeight.w500),
-                                isDense: true,
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
+                              labelText: 'First Name*',
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your first name';
@@ -116,19 +136,9 @@ class _SignupPageState extends State<SignupPage> {
                               },
                             ),
                             SizedBox(height: 12),
-                            TextFormField(
+                            buildTextFormField(
                               controller: _signupController.lastNameController,
-                              decoration: InputDecoration(
-                                labelText: 'Last Name*',
-                                labelStyle: TextStyle(fontWeight: FontWeight.w500),
-                                isDense: true,
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
+                              labelText: 'Last Name*',
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your last name';
@@ -137,49 +147,28 @@ class _SignupPageState extends State<SignupPage> {
                               },
                             ),
                             SizedBox(height: 12),
-                            TextFormField(
+                            buildTextFormField(
                               controller: _signupController.emailController,
-                              decoration: InputDecoration(
-                                labelText: 'Email*',
-                                labelStyle: TextStyle(fontWeight: FontWeight.w500),
-                                isDense: true,
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
+                              labelText: 'Email*',
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your email';
                                 }
-                                // Basic email validation
-                                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                    .hasMatch(value)) {
                                   return 'Please enter a valid email';
                                 }
                                 return null;
                               },
                             ),
                             SizedBox(height: 12),
-                            TextFormField(
+                            buildTextFormField(
                               controller: _signupController.phoneController,
-                              decoration: InputDecoration(
-                                labelText: 'Phone Number',
-                                labelStyle: TextStyle(fontWeight: FontWeight.w500),
-                                isDense: true,
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
+                              labelText: 'Phone Number',
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your phone number';
                                 }
-                                // Basic phone number validation
                                 if (!RegExp(r'^\d{10}$').hasMatch(value)) {
                                   return 'Please enter a valid phone number';
                                 }
@@ -187,26 +176,9 @@ class _SignupPageState extends State<SignupPage> {
                               },
                             ),
                             SizedBox(height: 12),
-                            TextFormField(
+                            buildTextFormField(
                               controller: _signupController.passwordController,
-                              obscureText: _obscureText,
-                              decoration: InputDecoration(
-                                labelText: 'Password*',
-                                labelStyle: TextStyle(fontWeight: FontWeight.w500),
-                                isDense: true,
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none,
-                                ),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _obscureText ? Icons.visibility : Icons.visibility_off,
-                                  ),
-                                  onPressed: _togglePasswordVisibility,
-                                ),
-                              ),
+                              labelText: 'Password*',
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your password';
@@ -216,6 +188,7 @@ class _SignupPageState extends State<SignupPage> {
                                 }
                                 return null;
                               },
+                              isPassword: true,
                             ),
                             SizedBox(height: 20),
                             TextButton(
@@ -224,20 +197,25 @@ class _SignupPageState extends State<SignupPage> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 backgroundColor: Color(0xff1B6100),
-                                minimumSize: Size(MediaQuery.of(context).size.width, 48),
+                                minimumSize: Size(
+                                    MediaQuery.of(context).size.width, 48),
                               ),
                               onPressed: () async {
                                 try {
                                   await _signupController.signup(context);
+
                                   // Navigate to the next screen on successful signup
                                 } catch (error) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text('Signup failed: $error')),
+                                    SnackBar(
+                                      content: Text('Signup failed: $error'),
+                                    ),
                                   );
                                 }
                               },
                               child: _signupController.isLoading
-                                  ? CircularProgressIndicator(color: Colors.white)
+                                  ? CircularProgressIndicator(
+                                      color: Colors.white)
                                   : Text(
                                       "Register",
                                       style: TextStyle(
@@ -256,7 +234,8 @@ class _SignupPageState extends State<SignupPage> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, AppRoutes.loginPage);
+                                    Navigator.pushNamed(
+                                        context, AppRoutes.loginPage);
                                   },
                                   child: Text("Login"),
                                 ),

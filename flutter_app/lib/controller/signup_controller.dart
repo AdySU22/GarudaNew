@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import '../models/user.dart';
+import '../routes/app_routes.dart'; // Make sure you have the correct import path
 
 class SignupController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -23,7 +26,7 @@ class SignupController {
       url,
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
-        'name': firstNameController.text +' '+lastNameController.text,
+        'name': '${firstNameController.text} ${lastNameController.text}',
         'email': emailController.text,
         'telp': phoneController.text,
         'password': passwordController.text,
@@ -35,8 +38,14 @@ class SignupController {
     if (response.statusCode == 200) {
       // Handle successful signup
       final responseData = json.decode(response.body);
-      print(responseData);
-      // Save token, navigate to another screen, etc.
+      final user = User.fromJson(responseData);
+
+      // Save token to SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('token', user.token);
+
+      // Navigate to HomePage with User model
+      Navigator.pushReplacementNamed(context, AppRoutes.homePage, arguments: user);
     } else {
       // Handle signup failure
       final error = json.decode(response.body);

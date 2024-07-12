@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/views/home_page.dart';
 import 'package:flutter_app/views/login_page.dart';
 import 'package:flutter_app/views/opening_page.dart';
 import 'package:flutter_app/views/signup_page.dart';
@@ -10,6 +11,7 @@ class AppRoutes {
   static const String welcomingPage = '/welcoming_page';
   static const String signupPage = '/signup_page';
   static const String loginPage = '/login_page';
+  static const String homePage = '/home_page';
 
   static Map<String, WidgetBuilder> routes = {
     initialRoute :(context) => OpeningPage(),
@@ -17,5 +19,6 @@ class AppRoutes {
     welcomingPage : (context)=> WelcomingPage(),
     signupPage : (context)=> SignupPage(),
     loginPage : (context)=> LoginPage(),
+    homePage : (context) => HomePage()
   };
 }
