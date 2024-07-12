@@ -21,7 +21,7 @@ class SignupController {
     if (!formKey.currentState!.validate()) return;
 
     _setLoading(true, context);
-    final url = Uri.parse('http://210.247.245.155:8000/signup');
+    final url = Uri.parse('http://210.247.245.155:8888/signup');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},

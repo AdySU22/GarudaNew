@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/views/confirmation_page.dart';
 import 'package:flutter_app/views/home_page.dart';
 import 'package:flutter_app/views/login_page.dart';
 import 'package:flutter_app/views/opening_page.dart';
+import 'package:flutter_app/views/payment_status.dart';
+import 'package:flutter_app/views/profile_page.dart';
+import 'package:flutter_app/views/property_register_page.dart';
+import 'package:flutter_app/views/purchase_history_page.dart';
+import 'package:flutter_app/views/purchase_page.dart';
+import 'package:flutter_app/views/search_page.dart';
+import 'package:flutter_app/views/setting_page.dart';
 import 'package:flutter_app/views/signup_page.dart';
 import 'package:flutter_app/views/venue_finder_page.dart';
 import 'package:flutter_app/views/welcoming_page.dart';
@@ -26,13 +34,22 @@ class AppRoutes {
 
 
   static Map<String, WidgetBuilder> routes = {
-    initialRoute: (context) => OpeningPage(),
-    openingPage: (context) => OpeningPage(),
-    welcomingPage: (context) => WelcomingPage(),
-    signupPage: (context) => SignupPage(),
-    loginPage: (context) => LoginPage(),
-    venueFinderPage: (context) => VenueFinderPage()
-  };
+  initialRoute: (context) => OpeningPage(),
+  openingPage: (context) => OpeningPage(),
+  welcomingPage: (context) => WelcomingPage(),
+  signupPage: (context) => SignupPage(),
+  loginPage: (context) => LoginPage(),
+  venueFinderPage: (context) => VenueFinderPage(),
+  searchPage: (context) => SearchPage(),
+  confirmationPage: (context) => ConfirmationPage(),
+  purchasePage: (context) => PurchasePage(),
+  paymentStatusPage: (context) => PaymentStatusPage(),
+  purchaseHistoryPage: (context) => PurchaseHistoryPage(),
+  settingPage: (context) => SettingPage(),
+  profilePage: (context) => ProfilePage(),
+  propertyRegisterPage: (context) => PropertyRegisterPage(),
+};
+
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {

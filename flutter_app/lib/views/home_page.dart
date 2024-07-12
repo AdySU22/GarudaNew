@@ -208,7 +208,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text("For You"), Text("See All")],
+            children: [Text("For You", style: AppTextStyles.interBlackBold15,), Text("See All")],
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -243,23 +243,22 @@ class _HomePageState extends State<HomePage> {
             imagePath: venue_image_path,
             borderRadius: 15.0,
           ),
+          SizedBox(height: 3),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
             children: [
-              Text(
-                venue_name,
-                style: TextStyle(fontSize: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(venue_name, style: AppTextStyles.interBlackMedium12,),
+                  Text(venue_place, style: AppTextStyles.interBlackNormal8,),
+                ],
               ),
-              Text(
-                venue_price,
-                style: TextStyle(fontSize: 8),
-              ),
+              SizedBox(width: 50),
+              Text(venue_price, style: AppTextStyles.interBlackNormal8,),
             ],
           ),
-          Text(
-            venue_place,
-            style: TextStyle(fontSize: 8),
-          )
         ],
       ),
     );
@@ -301,16 +300,20 @@ class _HomePageState extends State<HomePage> {
             imagePath: venue_img_path,
             borderRadius: 15.0,
           ),
+          SizedBox(height: 3),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(venue_name),
-                  Text(venue_place),
+                  Text(venue_name, style: AppTextStyles.interBlackMedium12,),
+                  Text(venue_place, style: AppTextStyles.interBlackNormal8,),
                 ],
               ),
-              Text(venue_price),
+              SizedBox(width: 50),
+              Text(venue_price, style: AppTextStyles.interBlackNormal8,),
             ],
           ),
         ],
