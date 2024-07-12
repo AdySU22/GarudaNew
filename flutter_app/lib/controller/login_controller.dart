@@ -18,7 +18,7 @@ class LoginController {
     if (!formKey.currentState!.validate()) return;
 
     _setLoading(true, context);
-    final url = Uri.parse('http://210.247.245.155:8000/login');
+    final url = Uri.parse('http://210.247.245.155:8888/login');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
@@ -32,8 +32,6 @@ class LoginController {
 
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
-      print(responseData);
-
       // Extract token and user information
       final String token = responseData['token'];
       final User user = User(

@@ -40,7 +40,7 @@ class _SignupPageState extends State<SignupPage> {
       obscureText: isPassword && _obscureText,
       decoration: InputDecoration(
         labelText: labelText,
-        labelStyle: TextStyle(fontWeight: FontWeight.w500),
+        labelStyle: AppTextStyles.interBlackMedium14,
         isDense: true,
         filled: true,
         fillColor: Colors.white,
@@ -82,7 +82,7 @@ class _SignupPageState extends State<SignupPage> {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.white,
-                  Color.fromARGB(70, 176, 255, 148),
+                  AppColors.lightGreen,
                   Colors.white,
                 ],
               ),
@@ -101,22 +101,16 @@ class _SignupPageState extends State<SignupPage> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Column(
+                      const Column(
                         children: [
                           Text(
                             "Sign Up",
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: AppTextStyles.interBlackBold32,
                           ),
                           SizedBox(height: 10),
                           Text(
                             "Create an account to continue!",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
-                            ),
+                            style: AppTextStyles.interGreyNormal12,
                           ),
                         ],
                       ),
@@ -196,7 +190,7 @@ class _SignupPageState extends State<SignupPage> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                backgroundColor: Color(0xff1B6100),
+                                backgroundColor: AppColors.darkGreen,
                                 minimumSize: Size(
                                     MediaQuery.of(context).size.width, 48),
                               ),
@@ -218,30 +212,26 @@ class _SignupPageState extends State<SignupPage> {
                                       color: Colors.white)
                                   : Text(
                                       "Register",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: AppTextStyles.interWhiteNormal14,
                                     ),
                             ),
-                            Row(
+                            Padding(padding: EdgeInsets.all(24), child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   "Already have an account? ",
-                                  style: TextStyle(color: Colors.grey),
+                                  style: AppTextStyles.interGreyNormal12,
                                 ),
-                                TextButton(
-                                  onPressed: () {
+                                GestureDetector(
+                                  onTap: () {
                                     Navigator.pushNamed(
                                         context, AppRoutes.loginPage);
                                   },
-                                  child: Text("Login"),
+                                  child: Text("Login", style: AppTextStyles.interBlueMedium12),
                                 ),
                               ],
                             ),
-                          ],
+                        )],
                         ),
                       ),
                     ],

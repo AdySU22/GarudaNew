@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.white,
-                  Color.fromARGB(70, 176, 255, 148),
+                  AppColors.lightGreen,
                   Colors.white,
                 ],
               ),
@@ -73,20 +73,14 @@ class _LoginPageState extends State<LoginPage> {
                       Container(
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                               "Login",
-                              style: TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: AppTextStyles.interBlackBold32
                             ),
                             SizedBox(height: 10),
                             Text(
                               "Enter your email and password to log in",
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey,
-                              ),
+                              style: AppTextStyles.interGreyNormal12,
                             ),
                           ],
                         ),
@@ -100,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                               controller: _loginController.emailController,
                               decoration: InputDecoration(
                                 labelText: 'Email*',
-                                labelStyle: TextStyle(fontWeight: FontWeight.w500),
+                                labelStyle: AppTextStyles.interBlackMedium14,
                                 isDense: true,
                                 filled: true,
                                 fillColor: Colors.white,
@@ -126,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                               obscureText: _obscureText,
                               decoration: InputDecoration(
                                 labelText: 'Password*',
-                                labelStyle: TextStyle(fontWeight: FontWeight.w500),
+                                labelStyle: AppTextStyles.interBlackMedium14,
                                 isDense: true,
                                 filled: true,
                                 fillColor: Colors.white,
@@ -167,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     Text(
                                       "Remember me",
-                                      style: TextStyle(color: Colors.grey),
+                                      style: AppTextStyles.interGreyNormal12
                                     ),
                                   ],
                                 ),
@@ -175,10 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                                   onTap: () {},
                                   child: Text(
                                     "Forgot Password?",
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                    style: AppTextStyles.interBlueMedium12,
                                   ),
                                 ),
                               ],
@@ -189,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                backgroundColor: Color(0xff1B6100),
+                                backgroundColor: AppColors.darkGreen,
                                 minimumSize: Size(MediaQuery.of(context).size.width, 48),
                               ),
                               onPressed: () async {
@@ -208,29 +199,27 @@ class _LoginPageState extends State<LoginPage> {
                                     )
                                   : Text(
                                       "Log In",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: AppTextStyles.interWhiteNormal14,
                                     ),
                             ),
-                            Row(
+                            Padding(
+                              padding: EdgeInsets.all(24),
+                              child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   "Don't have an account? ",
-                                  style: TextStyle(color: Colors.grey),
+                                  style: AppTextStyles.interGreyNormal12,
                                 ),
-                                TextButton(
-                                  onPressed: () {
+                                GestureDetector(
+                                  onTap: () {
                                     Navigator.pushNamed(context, AppRoutes.signupPage);
                                   },
-                                  child: Text("Sign Up"),
+                                  child: Text("Sign Up", style: AppTextStyles.interBlueMedium12),
                                 ),
                               ],
                             ),
-                          ],
+                        )],
                         ),
                       ),
                     ],

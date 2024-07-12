@@ -17,34 +17,34 @@ class WelcomingPage extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          end: Alignment.center,
           colors: [Color(0XFFA7FF87), Color(0XFFFFFFFF)],
         ),
       ),
       child: Stack(children: [
-        Image.asset(
+        Center(child:Image.asset(
           ImageConstant.welcomingImgPath,
           width: imageWidth,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        )),
+        Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
+            Text(
                 """Dive into a smarter way to experience your city. 
 With CitySport Booking, reserving sport centers 
 and venues is just a tap away""",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 15, height: 1.5),
               ),
-            ),
-            SizedBox(height: 20),
-            SizedBox(height: 20),
-            TextButton(
+            SizedBox(height: 250),
+            Padding(
+              padding: EdgeInsets.only(bottom: 100),
+              child: TextButton(
               style: TextButton.styleFrom(
-                backgroundColor:
-                    Colors.blue, // Change to your desired background color
+                minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 61),
+                backgroundColor: AppColors.darkGreen, // Change to your desired background color
                 foregroundColor: Colors.white, // Text color
                 padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                 shape: RoundedRectangleBorder(
@@ -54,16 +54,15 @@ and venues is just a tap away""",
               onPressed: () {
                 // Navigate to explore screen or perform any action
               },
-              child: const Text('EXPLORE!'),
-            ),
-            SizedBox(height: 10),
+              child: const Text('EXPLORE!',
+                  style: AppTextStyles.interWhiteMedium14),
+            )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors
-                          .blue, // Change to your desired background color
+                      backgroundColor: AppColors.lightpink, // Change to your desired background color
                       foregroundColor: Colors.white, // Text color
                       padding: EdgeInsets.symmetric(
                           horizontal: 24.0, vertical: 12.0),
@@ -75,7 +74,7 @@ and venues is just a tap away""",
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.loginPage);
                     },
-                    child: Text("Login")),
+                    child: Text("Login", style: AppTextStyles.opSansBlueGrayNormal20,)),
                 TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: Colors
@@ -96,7 +95,7 @@ and venues is just a tap away""",
             ),
           ],
         ),
-      ]),
+        )]),
     ));
   }
 }

@@ -21,11 +21,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             CircleAvatar(
               radius: 25,
-              backgroundImage: 
-              // widget.user.picture != null
-              //     ? NetworkImage(widget.user.picture!)
-              //     : 
-              AssetImage('assets/default_profile.png') as ImageProvider,
+              backgroundImage:
+                  // widget.user.picture != null
+                  //     ? NetworkImage(widget.user.picture!)
+                  //     :
+                  AssetImage('assets/default_profile.png') as ImageProvider,
             ),
             SizedBox(width: 10),
             Text('Welcome, ${widget.user.name}'),
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  labelText: 'Search',
+                  labelText: 'Search venues...',
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-Widget pickASport() {
+  Widget pickASport() {
     // List of image paths
     final List<String> sportImages = [
       'assets/dummies/home_pick_sport/badminton.png',
@@ -78,7 +78,7 @@ Widget pickASport() {
         children: [
           Text(
             "Pick A Sport",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           SizedBox(height: 10),
           Container(
@@ -109,13 +109,83 @@ Widget pickASport() {
       ),
     );
   }
+
   Container specialOffers() {
     return Container(
       child: Column(
         children: [
-          Text("Special Offers"),
+          Text(
+            "Special Offers",
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
           // SingleChildScrollView(
           // )
+        ],
+      ),
+    );
+  }
+
+  Container forYou() {
+    return Container(
+        child: Column(children: [
+      Padding(
+        padding: EdgeInsets.only(left: 10, right: 10),
+        child: Row(
+        children: [
+          Text("For You"),
+          Text("See All")
+        ],
+      )),
+      SingleChildScrollView(
+        child: Row(
+          children: [],
+        ),
+      )
+    ]));
+  }
+
+  Container forYouVenue(String venue_image_path, String venue_name,
+      String venue_price, String venue_place) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          // Image.asset(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                venue_name,
+                style: TextStyle(fontSize: 12),
+              ),
+              Text(
+                venue_price,
+                style: TextStyle(fontSize: 8),
+              ),
+            ],
+          ),
+          Text(
+            venue_place,
+            style: TextStyle(fontSize: 8),
+          )
+        ],
+      ),
+    );
+  }
+
+  Container nearYouVenue(String venue_img_path, String venue_name,
+      String venue_price, String venue_place) {
+    return Container(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(venue_name),
+              Text(venue_price),
+            ],
+          ),
+          Text(venue_place)
         ],
       ),
     );
