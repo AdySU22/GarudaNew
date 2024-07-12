@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/controller/signup_controller.dart';
 import 'package:flutter_app/core/app_export.dart';
+import 'package:flutter_app/widgets/AppButton.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -27,38 +28,6 @@ class _SignupPageState extends State<SignupPage> {
     setState(() {
       _obscureText = !_obscureText;
     });
-  }
-
-  Widget buildTextFormField({
-    required TextEditingController controller,
-    required String labelText,
-    required String? Function(String?)? validator,
-    bool isPassword = false,
-  }) {
-    return TextFormField(
-      controller: controller,
-      obscureText: isPassword && _obscureText,
-      decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: AppTextStyles.interBlackMedium14,
-        isDense: true,
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide.none,
-        ),
-        suffixIcon: isPassword
-            ? IconButton(
-                icon: Icon(
-                  _obscureText ? Icons.visibility : Icons.visibility_off,
-                ),
-                onPressed: _togglePasswordVisibility,
-              )
-            : null,
-      ),
-      validator: validator,
-    );
   }
 
   @override
@@ -119,7 +88,7 @@ class _SignupPageState extends State<SignupPage> {
                         child: Column(
                           children: [
                             SizedBox(height: 24),
-                            buildTextFormField(
+                            AppTextField(
                               controller: _signupController.firstNameController,
                               labelText: 'First Name*',
                               validator: (value) {
@@ -130,7 +99,7 @@ class _SignupPageState extends State<SignupPage> {
                               },
                             ),
                             SizedBox(height: 12),
-                            buildTextFormField(
+                            AppTextField(
                               controller: _signupController.lastNameController,
                               labelText: 'Last Name*',
                               validator: (value) {
@@ -141,7 +110,7 @@ class _SignupPageState extends State<SignupPage> {
                               },
                             ),
                             SizedBox(height: 12),
-                            buildTextFormField(
+                            AppTextField(
                               controller: _signupController.emailController,
                               labelText: 'Email*',
                               validator: (value) {
@@ -156,7 +125,7 @@ class _SignupPageState extends State<SignupPage> {
                               },
                             ),
                             SizedBox(height: 12),
-                            buildTextFormField(
+                            AppTextField(
                               controller: _signupController.phoneController,
                               labelText: 'Phone Number',
                               validator: (value) {
@@ -170,7 +139,7 @@ class _SignupPageState extends State<SignupPage> {
                               },
                             ),
                             SizedBox(height: 12),
-                            buildTextFormField(
+                            AppTextField(
                               controller: _signupController.passwordController,
                               labelText: 'Password*',
                               validator: (value) {
@@ -185,35 +154,14 @@ class _SignupPageState extends State<SignupPage> {
                               isPassword: true,
                             ),
                             SizedBox(height: 20),
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                backgroundColor: AppColors.darkGreen,
-                                minimumSize: Size(
-                                    MediaQuery.of(context).size.width, 48),
-                              ),
-                              onPressed: () async {
-                                try {
-                                  await _signupController.signup(context);
-
-                                  // Navigate to the next screen on successful signup
-                                } catch (error) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('Signup failed: $error'),
-                                    ),
-                                  );
-                                }
-                              },
-                              child: _signupController.isLoading
-                                  ? CircularProgressIndicator(
-                                      color: Colors.white)
-                                  : Text(
-                                      "Register",
-                                      style: AppTextStyles.interWhiteNormal14,
-                                    ),
+                            AppButton(
+                              isLoading: _signupController.isLoading,
+                              onProcess: _signupController.signup,
+                              backgroundColor:
+                                  AppColors.darkGreen, // Use your custom color
+                              textStyle: AppTextStyles
+                                  .interWhiteNormal14, // Use your custom text style
+                              buttonText: "Register",
                             ),
                             Padding(padding: EdgeInsets.all(24), child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
