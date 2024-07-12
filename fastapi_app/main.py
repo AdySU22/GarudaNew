@@ -304,7 +304,7 @@ def load_venue_detail(id, date) -> dict:
     
     venue_hours = {}
     for hour in range(open_time, close_time, period):
-        result = mysql.fetch_one(f"SELECT * FROM transaction WHERE venue_id = '{id}' AND date = '{date}' AND time = '{hour}:00'")
+        result = mysql.fetch_one(f"SELECT * FROM transaction WHERE venue_id = '{id}' AND date = '{date}' AND time = '{hour:02d}:00'")
         if result:
             venue_hours[hour] = "occupied"
         else:
