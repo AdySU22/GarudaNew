@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTextStyles {
   static const TextStyle interBlackBold32 = TextStyle(fontFamily: 'Inter', fontSize: 32.0, fontWeight: FontWeight.bold);
+  static const TextStyle interBlackBold15 = TextStyle(fontFamily: 'Inter', fontSize: 15.0, fontWeight: FontWeight.bold);
   static const TextStyle interGreyNormal12 = TextStyle(fontFamily: 'Inter', fontSize: 12.0, fontWeight: FontWeight.normal, color: Colors.grey);
   static const TextStyle interBlueMedium12 = TextStyle(fontFamily: 'Inter', fontSize: 12.0, fontWeight: FontWeight.w500, color: Colors.blue);
   static const TextStyle interBlackNormal14 = TextStyle(fontFamily: 'Inter', fontSize: 14, fontWeight: FontWeight.normal);

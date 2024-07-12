@@ -32,6 +32,8 @@ class LoginController {
 
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
+      print(responseData);
+
       // Extract token and user information
       final String token = responseData['token'];
       final User user = User(
