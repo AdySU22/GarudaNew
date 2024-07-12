@@ -1,0 +1,14 @@
+  mysql:
+    image: mysql
+    restart: always
+    network_mode: host
+    environment:
+      MYSQL_ROOT_PASSWORD: password   
+    command: sleep infinity
+
+
+
+
+
+
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql
