@@ -36,9 +36,9 @@ class WelcomingPage extends StatelessWidget {
 With CitySport Booking, reserving sport centers 
 and venues is just a tap away""",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 15, height: 1.5),
+                style: TextStyle(fontSize: 14, height: 1.5),
               ),
-            SizedBox(height: 250),
+            SizedBox(height: 300),
             Padding(
               padding: EdgeInsets.only(bottom: 100),
               child: TextButton(
@@ -72,6 +72,7 @@ and venues is just a tap away""",
                       ),
                     ),
                     onPressed: () {
+                      // for debugging purposes
                       Navigator.pushNamed(context, AppRoutes.loginPage);
                     },
                     child: Text("Login", style: AppTextStyles.opSansBlueGrayNormal20,)),

@@ -59,7 +59,7 @@ class LoginController {
     } else { // Handling errors if the API call fails.
       final error = json.decode(response.body); // Decoding error message from JSON.
       ScaffoldMessenger.of(context).showSnackBar( // Displaying error message as a snack bar.
-        SnackBar(content: Text(error['message'])),
+        SnackBar(content: Text(error['detail'])),
       );
     }
   }
