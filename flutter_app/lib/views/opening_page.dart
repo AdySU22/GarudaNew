@@ -22,13 +22,14 @@ class _OpeningPageState extends State<OpeningPage> {
     // Wait for 2 seconds before navigating
     await Future.delayed(Duration(seconds: 2));
 
-    if (token != null) {
-      // Navigate to the main screen (replace '/main' with your main screen route)
-      Navigator.of(context).pushReplacementNamed(AppRoutes.loginPage);
-    } else {
-      // Navigate to the welcoming screen
-      Navigator.of(context).pushReplacementNamed(AppRoutes.welcomingPage);
-    }
+    Navigator.of(context).pushReplacementNamed(AppRoutes.welcomingPage);
+    // if (token != null) {
+    //   // Navigate to the main screen (replace '/main' with your main screen route)
+    //   Navigator.of(context).pushReplacementNamed(AppRoutes.homePage);
+    // } else {
+    //   // Navigate to the welcoming screen
+    //   Navigator.of(context).pushReplacementNamed(AppRoutes.welcomingPage);
+    // }
   }
 
   @override

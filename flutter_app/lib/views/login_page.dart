@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/controller/login_controller.dart';
+import 'package:flutter_app/core/app_export.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -222,7 +223,9 @@ class _LoginPageState extends State<LoginPage> {
                                   style: TextStyle(color: Colors.grey),
                                 ),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, AppRoutes.signupPage);
+                                  },
                                   child: Text("Sign Up"),
                                 ),
                               ],

@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/routes/app_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class LoginController {
@@ -28,11 +31,31 @@ class LoginController {
     _setLoading(false, context);
 
     if (response.statusCode == 200) {
-      // Handle successful login
       final responseData = json.decode(response.body);
-      // Save token, navigate to another screen, etc.
+      print(responseData);
+
+      // Extract token and user information
+      final String token = responseData['token'];
+      final User user = User(
+        id: responseData['id'],
+        name: responseData['name'],
+        email: responseData['email'],
+        telp: responseData['telp'],
+        token: responseData["token"]
+        // picture: responseData['picture'], // Assuming the picture field exists
+      );
+
+      // Save token to SharedPreferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('auth_token', token);
+
+      // Navigate to HomePage and pass the User model
+      Navigator.pushReplacementNamed(
+        context,
+        AppRoutes.homePage,
+        arguments: user,
+      );
     } else {
-      // Handle login failure
       final error = json.decode(response.body);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(error['message'])),
