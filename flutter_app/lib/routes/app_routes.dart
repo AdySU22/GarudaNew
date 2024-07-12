@@ -47,7 +47,6 @@ class AppRoutes {
     paymentStatusPage: (context) => PaymentStatusPage(),
     purchaseHistoryPage: (context) => PurchaseHistoryPage(),
     settingPage: (context) => SettingPage(),
-    profilePage: (context) => ProfilePage(),
     propertyRegisterPage: (context) => PropertyRegisterPage(),
   };
 
@@ -57,6 +56,9 @@ class AppRoutes {
       case homePage:
         final user = settings.arguments as User;
         return MaterialPageRoute(builder: (_) => HomePage(user: user));
+      case profilePage:
+        final user = settings.arguments as User;
+        return MaterialPageRoute(builder: (_) => ProfilePage(user: user));
       // Add cases for other routes that need arguments similarly
       default:
         return MaterialPageRoute(builder: (_) => OpeningPage());
