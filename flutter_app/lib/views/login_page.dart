@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/controller/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -6,9 +7,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
+  late LoginController _loginController;
   bool _obscureText = true;
   bool _rememberMe = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loginController = LoginController();
+  }
+
+  @override
+  void dispose() {
+    _loginController.dispose();
+    super.dispose();
+  }
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -30,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.sizeOf(context).height,
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -78,11 +91,12 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       Form(
-                        key: _formKey,
+                        key: _loginController.formKey,
                         child: Column(
                           children: [
                             SizedBox(height: 24),
                             TextFormField(
+                              controller: _loginController.emailController,
                               decoration: InputDecoration(
                                 labelText: 'Email*',
                                 labelStyle: TextStyle(fontWeight: FontWeight.w500),
@@ -107,6 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             SizedBox(height: 12),
                             TextFormField(
+                              controller: _loginController.passwordController,
                               obscureText: _obscureText,
                               decoration: InputDecoration(
                                 labelText: 'Password*',
@@ -177,18 +192,27 @@ class _LoginPageState extends State<LoginPage> {
                                 minimumSize: Size(MediaQuery.of(context).size.width, 48),
                               ),
                               onPressed: () async {
-                                if (_formKey.currentState!.validate()) {
-                                  // Form validation passed, handle login logic here
+                                try {
+                                  await _loginController.login(context);
+                                  // Navigate to the next screen on successful login
+                                } catch (error) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(error.toString())),
+                                  );
                                 }
                               },
-                              child: Text(
-                                "Log In",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              child: _loginController.isLoading
+                                  ? CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                    )
+                                  : Text(
+                                      "Log In",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
