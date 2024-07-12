@@ -16,6 +16,7 @@ import 'package:flutter_app/views/venue_finder_page.dart';
 import 'package:flutter_app/views/welcoming_page.dart';
 
 class AppRoutes {
+  // Define all route names as constants for easy reference
   static const String initialRoute = '/initialRoute';
   static const String openingPage = '/opening_page';
   static const String welcomingPage = '/welcoming_page';
@@ -32,31 +33,31 @@ class AppRoutes {
   static const String profilePage = '/profile_page';
   static const String propertyRegisterPage = '/property_register_page';
 
-
+  // Map routes to their corresponding widgets using WidgetBuilder
   static Map<String, WidgetBuilder> routes = {
-  initialRoute: (context) => OpeningPage(),
-  openingPage: (context) => OpeningPage(),
-  welcomingPage: (context) => WelcomingPage(),
-  signupPage: (context) => SignupPage(),
-  loginPage: (context) => LoginPage(),
-  venueFinderPage: (context) => VenueFinderPage(),
-  searchPage: (context) => SearchPage(),
-  confirmationPage: (context) => ConfirmationPage(),
-  purchasePage: (context) => PurchasePage(),
-  paymentStatusPage: (context) => PaymentStatusPage(),
-  purchaseHistoryPage: (context) => PurchaseHistoryPage(),
-  settingPage: (context) => SettingPage(),
-  profilePage: (context) => ProfilePage(),
-  propertyRegisterPage: (context) => PropertyRegisterPage(),
-};
+    initialRoute: (context) => OpeningPage(),
+    openingPage: (context) => OpeningPage(),
+    welcomingPage: (context) => WelcomingPage(),
+    signupPage: (context) => SignupPage(),
+    loginPage: (context) => LoginPage(),
+    venueFinderPage: (context) => VenueFinderPage(),
+    searchPage: (context) => SearchPage(),
+    confirmationPage: (context) => ConfirmationPage(),
+    purchasePage: (context) => PurchasePage(),
+    paymentStatusPage: (context) => PaymentStatusPage(),
+    purchaseHistoryPage: (context) => PurchaseHistoryPage(),
+    settingPage: (context) => SettingPage(),
+    profilePage: (context) => ProfilePage(),
+    propertyRegisterPage: (context) => PropertyRegisterPage(),
+  };
 
-
+  // Route generator function for named routes that require arguments
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case homePage:
         final user = settings.arguments as User;
         return MaterialPageRoute(builder: (_) => HomePage(user: user));
-      // Handle other routes that need arguments similarly
+      // Add cases for other routes that need arguments similarly
       default:
         return MaterialPageRoute(builder: (_) => OpeningPage());
     }

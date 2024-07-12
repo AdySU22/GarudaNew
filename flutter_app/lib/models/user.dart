@@ -1,11 +1,11 @@
-import 'dart:convert';
+import 'dart:convert'; // Importing Dart's convert library for JSON encoding/decoding.
 
 class User {
-  final String id;
-  final String name;
-  final String email;
-  final String telp;
-  final String token;
+  final String id; // User's unique identifier.
+  final String name; // User's full name.
+  final String email; // User's email address.
+  final String telp; // User's telephone number.
+  final String token; // User's authentication token.
 
   User({
     required this.id,

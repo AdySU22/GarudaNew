@@ -1,13 +1,13 @@
 class Venue {
-  final int id;
-  final String name;
-  final String description;
-  final String location;
-  final int capacity;
-  final String openDay;
-  final String openTime;
-  final String closeTime;
-  final int period;
+  final int id; // Venue's unique identifier.
+  final String name; // Venue's name.
+  final String description; // Venue's description.
+  final String location; // Venue's location.
+  final int capacity; // Venue's capacity.
+  final String openDay; // Day when the venue is open.
+  final String openTime; // Opening time of the venue.
+  final String closeTime; // Closing time of the venue.
+  final int period; // Period for which the venue is available.
 
   Venue({
     required this.id,
@@ -21,6 +21,7 @@ class Venue {
     required this.period,
   });
 
+  // Factory method to create a Venue instance from JSON
   factory Venue.fromJson(Map<String, dynamic> json) {
     return Venue(
       id: json['id'] as int,
@@ -35,6 +36,7 @@ class Venue {
     );
   }
 
+  // Method to convert a Venue instance to JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,

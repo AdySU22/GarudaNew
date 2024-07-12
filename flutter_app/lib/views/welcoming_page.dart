@@ -44,7 +44,7 @@ and venues is just a tap away""",
               child: TextButton(
               style: TextButton.styleFrom(
                 minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 61),
-                backgroundColor: AppColors.darkGreen, // Change to your desired background color
+                backgroundColor: AppColors.darkGreen, 
                 foregroundColor: Colors.white, // Text color
                 padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                 shape: RoundedRectangleBorder(
@@ -52,7 +52,7 @@ and venues is just a tap away""",
                 ),
               ),
               onPressed: () {
-                // Navigate to explore screen or perform any action
+              
               },
               child: const Text('EXPLORE!',
                   style: AppTextStyles.interWhiteMedium14),
@@ -62,7 +62,7 @@ and venues is just a tap away""",
               children: [
                 TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: AppColors.lightpink, // Change to your desired background color
+                      backgroundColor: AppColors.lightpink, 
                       foregroundColor: Colors.white, // Text color
                       padding: EdgeInsets.symmetric(
                           horizontal: 24.0, vertical: 12.0),
@@ -77,8 +77,7 @@ and venues is just a tap away""",
                     child: Text("Login", style: AppTextStyles.opSansBlueGrayNormal20,)),
                 TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors
-                          .blue, // Change to your desired background color
+                      backgroundColor: AppColors.lightpink,
                       foregroundColor: Colors.white, // Text color
                       padding: EdgeInsets.symmetric(
                           horizontal: 24.0, vertical: 12.0),
@@ -90,7 +89,7 @@ and venues is just a tap away""",
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.signupPage);
                     },
-                    child: Text("Sign Up")),
+                    child: Text("Sign Up", style: AppTextStyles.opSansBlueGrayNormal20,)),
               ],
             ),
           ],

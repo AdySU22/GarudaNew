@@ -10,12 +10,11 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Confirmation'),
+        title: Text('Confirmation'), // App bar title set to 'Confirmation'
       ),
       body: Center(
-        child: Text('Confirmation Page'),
+        child: Text('Confirmation Page'), // Centered text widget displaying 'Confirmation Page'
       ),
     );
   }
 }
-
